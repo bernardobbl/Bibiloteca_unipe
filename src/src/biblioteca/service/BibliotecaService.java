@@ -2,6 +2,8 @@ package biblioteca.service;
 
 import biblioteca.model.*;
 
+import java.util.Date;
+
 public class BibliotecaService {
     private Biblioteca biblioteca;
 
@@ -63,4 +65,45 @@ public class BibliotecaService {
             }
         }
     }
+    public Usuario buscarUsuarioPorId(int id) {
+        for (Usuario u : biblioteca.getUsuarios()) {
+            if (u.getId() == id) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public Livro buscarLivroPorTitulo(String titulo) {
+        for (Livro l : biblioteca.getLivros()) {
+            if (l.toString().toLowerCase().contains(titulo.toLowerCase())) {
+                return l;
+            }
+        }
+        return null;
+    }
+
+    public Emprestimo buscarEmprestimoPorLivro(String titulo) {
+        for (Emprestimo e : biblioteca.getEmprestimos()) {
+            if (e.getLivro().toString().toLowerCase().contains(titulo.toLowerCase())) {
+                return e;
+            }
+        }
+        return null;
+    }
+    public boolean registrarEmprestimo(Usuario usuario, Livro livro) {
+        if (livro.isDisponivel()) {
+            livro.emprestar();
+            Emprestimo emprestimo = new Emprestimo(livro, usuario, new Date(), null);
+            biblioteca.adicionarEmprestimo(emprestimo);
+            return true;
+        }
+        return false;
+    }
+    public void devolverLivro(Emprestimo emprestimo) {
+        emprestimo.getLivro().devolver();
+        biblioteca.getEmprestimos().remove(emprestimo);
+    }
+
+
 }
