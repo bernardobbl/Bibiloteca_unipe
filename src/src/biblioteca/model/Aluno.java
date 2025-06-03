@@ -16,6 +16,6 @@ public class Aluno extends Usuario {
 
     @Override
     public String toString() {
-        return super.toString() + " - Aluno do curso: " + curso;
+        return super.toString() + " - Curso do aluno: " + curso;
     }
 }
