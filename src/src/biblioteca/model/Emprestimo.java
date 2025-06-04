@@ -6,7 +6,7 @@ public class Emprestimo {
     private Livro livro;
     private Usuario usuario;
 
-    public Emprestimo(Livro livro, Usuario usuario, Date dataEmprestimo, Date dataDevolucao) {
+    public Emprestimo(Livro livro, Usuario usuario) {
         this.livro = livro;
         this.usuario = usuario;
     }

@@ -18,7 +18,7 @@ public class Funcionario extends Usuario {
                 + " | Cargo: " + cargo;
     }
 
-    // Se você precisar que o funcionário tenha métodos relacionados a Empréstimo, mantenha-os:
+
     public boolean registrarEmprestimo(Usuario usuario, Livro livro) {
         if (livro.isDisponivel()) {
             livro.emprestar();

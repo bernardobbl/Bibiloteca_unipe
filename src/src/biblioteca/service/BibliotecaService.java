@@ -2,8 +2,6 @@ package biblioteca.service;
 
 import biblioteca.model.*;
 
-import java.util.Date;
-
 public class BibliotecaService {
     private Biblioteca biblioteca;
 
@@ -94,7 +92,7 @@ public class BibliotecaService {
     public boolean registrarEmprestimo(Usuario usuario, Livro livro) {
         if (livro.isDisponivel()) {
             livro.emprestar();
-            Emprestimo emprestimo = new Emprestimo(livro, usuario, new Date(), null);
+            Emprestimo emprestimo = new Emprestimo(livro, usuario);
             biblioteca.adicionarEmprestimo(emprestimo);
             return true;
         }
