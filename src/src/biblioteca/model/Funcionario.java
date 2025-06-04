@@ -2,14 +2,23 @@ package biblioteca.model;
 
 public class Funcionario extends Usuario {
     private String cargo;
-    private String setor;
 
-    public Funcionario(String nome, int id, String cargo, String setor) {
+    public Funcionario(String nome, int id, String cargo) {
         super(nome, id);
         this.cargo = cargo;
-        this.setor = setor;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + " | Cargo: " + cargo;
+    }
+
+    // Se você precisar que o funcionário tenha métodos relacionados a Empréstimo, mantenha-os:
     public boolean registrarEmprestimo(Usuario usuario, Livro livro) {
         if (livro.isDisponivel()) {
             livro.emprestar();
@@ -24,7 +33,7 @@ public class Funcionario extends Usuario {
     }
 
     public boolean cadastrarNovoLivro(Livro livro) {
-        // Suponha que tem acesso à Biblioteca
+        // Se tiver acesso à instância de Biblioteca, implemente corretamente aqui
         return true;
     }
 }

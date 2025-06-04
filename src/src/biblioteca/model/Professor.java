@@ -10,16 +10,18 @@ public class Professor extends Usuario {
         this.titulo = titulo;
     }
 
-    public boolean solicitarEmprestimo(Livro livro, int dias) {
-        if (livro.isDisponivel()) {
-            livro.emprestar();
-            return true;
-        }
-        return false;
+    public String getDisciplina() {
+        return disciplina;
     }
 
-    public boolean renovarEmprestimo(Emprestimo emp) {
-        // Lógica de renovação fictícia
-        return true;
+    public String getTitulo() {
+        return titulo;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + " | Disciplina: " + disciplina
+                + " | Título: " + titulo;
     }
 }

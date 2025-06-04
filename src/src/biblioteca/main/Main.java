@@ -9,8 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Biblioteca biblioteca = new Biblioteca();
-        BibliotecaService service = new BibliotecaService(biblioteca);
+        BibliotecaService service = new BibliotecaService(new Biblioteca());
 
         System.out.println("Sistema de Biblioteca iniciado!");
 
@@ -33,6 +32,7 @@ public class Main {
 
             switch (opcao) {
                 case 1:
+                    // ---- (continua igual ao seu código original) ----
                     System.out.print("Título do livro: ");
                     String titulo = sc.nextLine();
                     System.out.print("Nome do autor: ");
@@ -58,18 +58,68 @@ public class Main {
                     break;
 
                 case 2:
+                    // ==== ALTERAÇÃO AQUI: CADASTRAR USUÁRIO DIFERENCIADO ====
                     System.out.print("Nome do usuário: ");
                     String nome = sc.nextLine();
+
                     System.out.print("ID do usuário (número): ");
                     int id = sc.nextInt();
-                    sc.nextLine();
+                    sc.nextLine(); // limpar buffer
 
-                    Usuario usuario = new Usuario(nome, id);
+                    System.out.println("Qual o tipo de usuário?");
+                    System.out.println("1) Aluno");
+                    System.out.println("2) Professor");
+                    System.out.println("3) Funcionário");
+                    System.out.print("Escolha (1-3): ");
+                    int tipo = sc.nextInt();
+                    sc.nextLine(); // limpar buffer
 
-                    if (service.cadastrarUsuario(usuario)) {
-                        System.out.println("Usuário cadastrado!");
-                    } else {
-                        System.out.println("Usuário já cadastrado.");
+                    switch (tipo) {
+                        case 1:
+                            // Dados específicos de Aluno
+                            System.out.print("Informe a matrícula do aluno: ");
+                            String matricula = sc.nextLine();
+                            System.out.print("Informe o curso do aluno: ");
+                            String curso = sc.nextLine();
+
+                            Aluno aluno = new Aluno(nome, id, matricula, curso);
+                            if (service.cadastrarUsuario(aluno)) {
+                                System.out.println("Aluno cadastrado com sucesso!");
+                            } else {
+                                System.out.println("Usuário já cadastrado.");
+                            }
+                            break;
+
+                        case 2:
+                            // Dados específicos de Professor
+                            System.out.print("Informe a disciplina do professor: ");
+                            String disciplina = sc.nextLine();
+                            System.out.print("Informe o título do professor: ");
+                            String tituloProf = sc.nextLine();
+
+                            Professor prof = new Professor(nome, id, disciplina, tituloProf);
+                            if (service.cadastrarUsuario(prof)) {
+                                System.out.println("Professor cadastrado com sucesso!");
+                            } else {
+                                System.out.println("Usuário já cadastrado.");
+                            }
+                            break;
+
+                        case 3:
+                            // Dados específicos de Funcionário
+                            System.out.print("Informe o cargo do funcionário: ");
+                            String cargo = sc.nextLine();
+
+                            Funcionario func = new Funcionario(nome, id, cargo);
+                            if (service.cadastrarUsuario(func)) {
+                                System.out.println("Funcionário cadastrado com sucesso!");
+                            } else {
+                                System.out.println("Usuário já cadastrado.");
+                            }
+                            break;
+
+                        default:
+                            System.out.println("Tipo de usuário inválido. Voltando ao menu principal.");
                     }
                     break;
 

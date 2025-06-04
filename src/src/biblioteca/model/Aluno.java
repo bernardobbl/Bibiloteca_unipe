@@ -14,8 +14,15 @@ public class Aluno extends Usuario {
         return matricula;
     }
 
+    public String getCurso() {
+        return curso;
+    }
+
     @Override
     public String toString() {
-        return super.toString() + " - Curso do aluno: " + curso;
+        // super.toString() imprime ID e Nome
+        return super.toString()
+                + " | Matrícula: " + matricula
+                + " | Curso: " + curso;
     }
 }
